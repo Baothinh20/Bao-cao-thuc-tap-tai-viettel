@@ -7,7 +7,7 @@
   - Gmail:tranbaothinh.2001@gmail.com
   - Github: https://github.com/Baothinh20
 
-### I.Công việc được giao:
+### I. Công việc được giao:
 
   - Tìm hiểu về Python Framework.
     - Cài đặt Python.
@@ -18,7 +18,7 @@
   - Tìm hiểu về Netbox:
     - Đọc sơ qua tài liệu trên git https://github.com/netbox-community/netbox.
   
-### II.Tiến trình công việc:
+### II. Tiến trình công việc:
 
   1. Tổng quan:
     - Python Framework là các đoạn code đã được viết sẵn, một bộ khung và các thư viện lập trình được đóng gói.
@@ -100,9 +100,81 @@
    ]
    ```
    
-   
+   - Thiết lập cơ sở dữ liệu
+      - Mở file mysite/settings.py.
+      - Theo mặc định, cấu hình sử dụng SQLite.
+
+         ```bash
+          DATABASES = {
+             'default': {
+                 'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': BASE_DIR / 'db.sqlite3',
+             }
+          }
+          ```
+     
+      - Nếu muốn sử dụng cơ sở dữ liệu khác, thay đổi từ khóa:
+       - ENGINE -> 'django.db.backends.sqlite3', 'django.db.backends.postgresql', 'django.db.backends.mysql', or 'django.db.backends.oracle' etc.
+       - NAME : Tên cơ sở dữ liệu
+
+   - Nếu không sử dụng SQLite làm cơ sở dữ liệu của mình, các cài đặt bổ sung như USER, PASSWORDvà HOST phải được thêm vào.
+   - INSTALLED_APPS chứa tên của tất cả các ứng dụng Django được kích hoạt trong phiên bản Django này.
+       - django.contrib.admin- Trang web quản trị.
+       - django.contrib.auth- Một hệ thống xác thực.
+       - django.contrib.contenttypes- Một khung cho các loại nội dung.
+       - django.contrib.sessions- Một khung phiên.
+       - django.contrib.messages- Một khung nhắn tin.
+       - django.contrib.staticfiles- Một khung để quản lý các tệp tĩnh.
+   - Lệnh migrate sẽ tạo các cơ sở dữ liệu cần thiết dựa trên co sở dữ liệu ở mysite/settings.py
+   - Tạo model:
+       - Tạo model trong polls/models.py
+       - Với poll app chỉ cần 2 model Question and Choice
+       - Thư mục sau khi sửa
+          ```bash
+          from django.db import models
+
+          class Question(models.Model):
+              question_text = models.CharField(max_length=200)
+              pub_date = models.DateTimeField('date published')
+
+
+          class Choice(models.Model):
+              question = models.ForeignKey(Question, on_delete=models.CASCADE)
+              choice_text = models.CharField(max_length=200)
+              votes = models.IntegerField(default=0)
+          ```
+       - Mỗi mô hình được đại diện bởi một lớp phân lớp con django.db.models.Model. Mỗi mô hình có một số biến lớp, mỗi biến đại diện cho một trường cơ sở dữ liệu            trong mô hình.
+       - Mỗi trường được đại diện bởi một thể hiện của một lớp Field
+      
+   - Kích hoạt model:
+       - Thêm 'polls.apps.PollsConfig' vào mysite/settings.py để đưa ứng dụng vào project
+       - Thư mục sau khi sửa
+          ```bash
+          INSTALLED_APPS = [
+              'polls.apps.PollsConfig',
+              'django.contrib.admin',
+              'django.contrib.auth',
+              'django.contrib.contenttypes',
+              'django.contrib.sessions',
+              'django.contrib.messages',
+              'django.contrib.staticfiles',
+          ]
+          ```
+        - Chạy lệnh:
+          ```bash
+          python manage.py makemigrations polls
+          ```
+        - Xuất hiện những dòng lệnh:
+          ```bash
+          Migrations for 'polls':
+          polls/migrations/0001_initial.py
+              - Create model Question
+              - Create model Choice
+          ```
+    
   3. Bổ sung:
-    - Hiện tại em đang tìm hiểu về việc cài netbox trên ubuntu (20.04).
+
+   - Hiện tại em đang tìm hiểu về việc cài netbox trên ubuntu (20.04).
     
 ### III.Tài liệu tham khảo
   - https://topdev.vn/blog/framework-la-gi/.
