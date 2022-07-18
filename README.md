@@ -59,10 +59,48 @@
         wsgi.py
    ```
    - Ghi chú:
-    - Thư mục gốc mysite/ ngoài cùng là container của project.
-    - Thư mục mysite/ bên trong là package Python thực tế cho project
-    - mysite/ __ init __ .py: là một file rỗng để đánh dấu đây là package của Python.
-    
+      - Thư mục gốc mysite/ ngoài cùng là container của project.
+      - Thư mục mysite/ bên trong là package Python thực tế cho project
+      - mysite/ __ init __ .py: là một file rỗng để đánh dấu đây là package của Python.
+      - mysite/settings.py: Cài đặt/ cấu hình cho project này.
+      - mysite/urls.py: Các khai báo URL cho project này, đóng vai trò làm router để hướng dẫn các request đến file xử lý phù hợp.
+      - mysite/asgi.py và mysite/wsgi.py: file cấu hình cho server
+
+    >py manage.py runserver
+   
+   - Tạo Poll app:
+   
+    >py manage.py startapp polls
+
+   - Các file đã được tạo:
+   
+   ```bash
+   mysite/
+    manage.py
+    mysite/
+        __init__.py
+        settings.py
+        urls.py
+        asgi.py
+        wsgi.py
+   ```
+   
+   - Tạo view cơ bản như web https://docs.djangoproject.com/en/4.0/intro/tutorial01/#writing-your-first-django-app-part-1
+   - Ta cần điều hướng để có thể gọi view này -> chỉnh url
+   - Để load được poll/urls.py vào trong mysite/urls.py thì ta phải thông qua lệnh “include“, muốn sử dụng được lệnh include thì bạn phải import nó từ packages “urls”
+   
+   - Thư mục mysite/urls.py hiện tại:
+   ```bash
+   from django.contrib import admin
+   from django.urls import include, path
+
+   urlpatterns = [
+   path('polls/', include('polls.urls')),
+   path('admin/', admin.site.urls),
+   ]
+   ```
+   
+   
   3. Bổ sung:
     - Hiện tại em đang tìm hiểu về việc cài netbox trên ubuntu (20.04).
     
