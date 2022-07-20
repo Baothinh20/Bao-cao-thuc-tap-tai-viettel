@@ -234,6 +234,204 @@
                   return self.choice_text
            ```
        - Lưu thay đổi:
+
+          ```bash
+          >>> from polls.models import Choice, Question
+
+          # Make sure our __str__() addition worked.
+          >>> Question.objects.all()
+          <QuerySet [<Question: What's up?>]>
+
+          # Django provides a rich database lookup API that's entirely driven by
+          # keyword arguments.
+          >>> Question.objects.filter(id=1)
+          <QuerySet [<Question: What's up?>]>
+          >>> Question.objects.filter(question_text__startswith='What')
+          <QuerySet [<Question: What's up?>]>
+
+          # Get the question that was published this year.
+          >>> from django.utils import timezone
+          >>> current_year = timezone.now().year
+          >>> Question.objects.get(pub_date__year=current_year)
+          <Question: What's up?>
+
+          # Request an ID that doesn't exist, this will raise an exception.
+          >>> Question.objects.get(id=2)
+          Traceback (most recent call last):
+              ...
+          DoesNotExist: Question matching query does not exist.
+
+          # Lookup by a primary key is the most common case, so Django provides a
+          # shortcut for primary-key exact lookups.
+          # The following is identical to Question.objects.get(id=1).
+          >>> Question.objects.get(pk=1)
+          <Question: What's up?>
+
+          # Make sure our custom method worked.
+          >>> q = Question.objects.get(pk=1)
+          >>> q.was_published_recently()
+          True
+
+          # Give the Question a couple of Choices. The create call constructs a new
+          # Choice object, does the INSERT statement, adds the choice to the set
+          # of available choices and returns the new Choice object. Django creates
+          # a set to hold the "other side" of a ForeignKey relation
+          # (e.g. a question's choice) which can be accessed via the API.
+          >>> q = Question.objects.get(pk=1)
+
+          # Display any choices from the related object set -- none so far.
+          >>> q.choice_set.all()
+          <QuerySet []>
+
+          # Create three choices.
+          >>> q.choice_set.create(choice_text='Not much', votes=0)
+          <Choice: Not much>
+          >>> q.choice_set.create(choice_text='The sky', votes=0)
+          <Choice: The sky>
+          >>> c = q.choice_set.create(choice_text='Just hacking again', votes=0)
+
+          # Choice objects have API access to their related Question objects.
+          >>> c.question
+          <Question: What's up?>
+
+          # And vice versa: Question objects get access to Choice objects.
+          >>> q.choice_set.all()
+          <QuerySet [<Choice: Not much>, <Choice: The sky>, <Choice: Just hacking again>]>
+          >>> q.choice_set.count()
+          3
+
+          # The API automatically follows relationships as far as you need.
+          # Use double underscores to separate relationships.
+          # This works as many levels deep as you want; there's no limit.
+          # Find all Choices for any question whose pub_date is in this year
+          # (reusing the 'current_year' variable we created above).
+          >>> Choice.objects.filter(question__pub_date__year=current_year)
+          <QuerySet [<Choice: Not much>, <Choice: The sky>, <Choice: Just hacking again>]>
+
+          # Let's delete one of the choices. Use delete() for that.
+          >>> c = q.choice_set.filter(choice_text__startswith='Just hacking')
+          >>> c.delete()
+           ```
+   - Chỉnh sửa giao diện và thêm đường dẫn:
+     - Sửa file  polls/views.py:
+          ```bash
+          def detail(request, question_id):
+              return HttpResponse("You're looking at question %s." % question_id)
+
+          def results(request, question_id):
+              response = "You're looking at the results of question %s."
+              return HttpResponse(response % question_id)
+
+          def vote(request, question_id):
+              return HttpResponse("You're voting on question %s." % question_id)
+           ```
+           
+     - Sửa file  polls/url.py:
+
+           ```bash
+          from django.urls import path
+
+          from . import views
+
+          urlpatterns = [
+              # ex: /polls/
+              path('', views.index, name='index'),
+              # ex: /polls/5/
+              path('<int:question_id>/', views.detail, name='detail'),
+              # ex: /polls/5/results/
+              path('<int:question_id>/results/', views.results, name='results'),
+              # ex: /polls/5/vote/
+              path('<int:question_id>/vote/', views.vote, name='vote'),
+          ]
+           ```
+           
+     - Mỗi view chịu trách nghiệm cho việc trả về HttpResponse khi việc kết nối hoàn tất hoặc trả về  Http404 khi xuất hiện lỗi.
+
+     - Sửa file  polls/view.py:
+
+           ```bash
+           Phần này em chưa hiểu kĩ ạ. Hình như chỉ để hiện pub_date khi thay đổi question.
+            from django.http import HttpResponse
+
+            from .models import Question
+
+
+            def index(request):
+                latest_question_list = Question.objects.order_by('-pub_date')[:5]
+                output = ', '.join([q.question_text for q in latest_question_list])
+                return HttpResponse(output)
+
+           # Leave the rest of the views (detail, results, vote) unchanged
+           ```
+     - Đặt Template:
+
+           ```bash
+            {% if latest_question_list %}
+                <ul>
+                {% for question in latest_question_list %}
+                    <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p>No polls are available.</p>
+            {% endif %}
+           ```
+           
+     - Update index view:
+
+           ```bash
+            from django.http import HttpResponse
+            from django.template import loader
+
+            from .models import Question
+
+
+            def index(request):
+                latest_question_list = Question.objects.order_by('-pub_date')[:5]
+                template = loader.get_template('polls/index.html')
+                context = {
+                    'latest_question_list': latest_question_list,
+                }
+                return HttpResponse(template.render(context, request))
+           ```
+     - Hiển thị Http404:
+     - Chỉnh sửa file: polls/view.py
+           ```bash
+            from django.http import Http404
+            from django.shortcuts import render
+
+            from .models import Question
+            # ...
+            def detail(request, question_id):
+                try:
+                    question = Question.objects.get(pk=question_id)
+                except Question.DoesNotExist:
+                    raise Http404("Question does not exist")
+                return render(request, 'polls/detail.html', {'question': question})
+           ```
+
+     - Tạo polls/template/polls/detail.html template:
+           ```bash
+            from django.urls import path
+
+            from . import views
+
+            app_name = 'polls'
+            urlpatterns = [
+                path('', views.index, name='index'),
+                path('<int:question_id>/', views.detail, name='detail'),
+                path('<int:question_id>/results/', views.results, name='results'),
+                path('<int:question_id>/vote/', views.vote, name='vote'),
+            ]
+           ```
+
+   - Tối giản hóa code (Ở đây em áp dụng các cách tối giản của tutorial04) : 
+        https://docs.djangoproject.com/en/4.0/intro/tutorial04/
+
+   - Tạo các Test cho app của mình: 
+        https://docs.djangoproject.com/en/4.0/intro/tutorial05/
+
+   - Tối giản hóa code (Ở đây em làm theo tutorial04) : 
   3. Bổ sung:
 
    - Hiện tại em đang tìm hiểu về việc cài netbox trên ubuntu (20.04).
