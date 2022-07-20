@@ -32,18 +32,22 @@
   1. Tổng quan:
    - Python Framework là các đoạn code đã được viết sẵn, một bộ khung và các thư viện lập trình được đóng gói.
    - Django là Python Back-end framework tốt nhất vào những năm 2021 tới hiện tại.
+   ![alt text](https://github.com/Baothinh20/Report/blob/main/image/Django.png?raw=true)
    - Điểm nổi bật chính:
       - Rất nhiều thư viện có sẵn.
       - Hệ thống xác nhận thông tin người dùng có sẵn.
       - Cơ sở dữ liệu hướng đối tượng giúp lưu trữ và phục hồi dữ liệu.
       - Trình quản lý admin tự động giúp sửa, thêm và xóa các tính năng.
       - Hệ thống cache mạnh mẽ.
-    - Sơ qua về Netbox:
+    - Sơ qua về Netbox:https:
+    ![alt text](https://github.com/Baothinh20/Report/blob/main/image/netbox.png?raw=true)
       - NetBox là một công cụ mô hình hóa tài nguyên cơ sở hạ tầng (IRM) được thiết kế để trao quyền tự động hóa mạng, được sử dụng bởi hàng nghìn tổ chức trên khắp           thế giới.
       - Vô số thành phần cơ sở hạ tầng có thể được mô hình hóa trong NetBox.
       - Ngoài các mô hình và chức năng tích hợp sẵn, NetBox có thể được tùy chỉnh và mở rộng theo nhiều cách.
       - NetBox cũng có API REST hoàn chỉnh cũng như API GraphQL.
-      - NetBox là một ứng dụng web dựa trên Django Python với cơ sở dữ liệu PostgreSQL. 
+      - NetBox là một ứng dụng web dựa trên Django Python với cơ sở dữ liệu PostgreSQL.
+      - NetBox app stack.
+      ![alt text](//github.com/Baothinh20/Report/blob/main/image/netbox_app.png?raw=true)
   2. Cài đặt và thiết lập app Django cơ bản: (Step-by-step)
    - Cài đặt Pycharm theo web https://niithanoi.edu.vn/huong-dan-cai-dat-va-su-dung-pycharm-ide-trong-lap-trinh-python.html
    - Cài đặt Python 3.10 theo web https://www.python.org/downloads/release/python-3105/
