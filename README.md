@@ -484,7 +484,9 @@
            
   3. Bổ sung:
 
-   - Hiện tại em đang tìm hiểu về việc cài netbox trên ubuntu (20.04). https://docs.netbox.dev/en/stable/installation/
+   - Cài netbox trên ubuntu (20.04). https://docs.netbox.dev/en/stable/installation/
+      - Vì quá trình cài không có lỗi nên các bước làm em làm giống tutorial và em đã cài các phần mềm PostgreSQL Database, Redis, Gunicorn, HTTP Server Setup (Apache)       để hỗ trợ cho netbox.
+   - Tìm hiểu thêm về cách phát triển netbox: https://docs.netbox.dev/en/stable/development/
     
 ### III.Tài liệu tham khảo
   - https://topdev.vn/blog/framework-la-gi/.
@@ -500,6 +502,7 @@
   - https://docs.netbox.dev/en/stable/
   - https://computingforgeeks.com/install-and-configure-netbox-ipam-dcim-tool-on-ubuntu/.
   - https://computingforgeeks.com/installing-postgresql-database-server-on-ubuntu/.
+  - https://news.cloud365.vn/tag/netbox/
   - Extra:
     - https://howkteam.vn/course/upload-file-trong-lap-trinh-website-voi-python/tao-mot-web-app-va-xu-ly-khi-nguoi-dung-yeu-cau-truy-cap-trong-python-django-1517.
   - Demo:
