@@ -10,12 +10,12 @@
 ## Mục lục:
 ### I. Công việc được giao:
 ### II. Tiến trình công việc:
-### III.Tài liệu tham khảo
 #### 1. Tổng quan:
 #### 2. Cài đặt và thiết lập app Django cơ bản:
 #### 3. Bổ sung:
+### III.Tài liệu tham khảo
 
-
+-----
 ### I. Công việc được giao:
 
   - Tìm hiểu về Python Framework.
@@ -472,7 +472,7 @@
            
   3. Bổ sung:
 
-   - Hiện tại em đang tìm hiểu về việc cài netbox trên ubuntu (20.04).
+   - Hiện tại em đang tìm hiểu về việc cài netbox trên ubuntu (20.04). https://docs.netbox.dev/en/stable/installation/
     
 ### III.Tài liệu tham khảo
   - https://topdev.vn/blog/framework-la-gi/.
