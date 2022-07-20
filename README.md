@@ -48,7 +48,7 @@
       - NetBox là một ứng dụng web dựa trên Django Python với cơ sở dữ liệu PostgreSQL.
       - NetBox app stack.
       
-      ![alt text](//github.com/Baothinh20/Report/blob/main/image/netbox_app.png?raw=true)
+      ![alt text](https://github.com/Baothinh20/Report/blob/main/image/netbox_app.png?raw=true)
       
   2. Cài đặt và thiết lập app Django cơ bản: (Step-by-step)
    - Cài đặt Pycharm theo web https://niithanoi.edu.vn/huong-dan-cai-dat-va-su-dung-pycharm-ide-trong-lap-trinh-python.html
