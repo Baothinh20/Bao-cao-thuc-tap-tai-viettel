@@ -21,9 +21,9 @@
 ### II. Tiến trình công việc:
 
   1. Tổng quan:
-    - Python Framework là các đoạn code đã được viết sẵn, một bộ khung và các thư viện lập trình được đóng gói.
-    - Django là Python Back-end framework tốt nhất vào những năm 2021 tới hiện tại.
-    - Điểm nổi bật chính:
+   - Python Framework là các đoạn code đã được viết sẵn, một bộ khung và các thư viện lập trình được đóng gói.
+   - Django là Python Back-end framework tốt nhất vào những năm 2021 tới hiện tại.
+   - Điểm nổi bật chính:
       - Rất nhiều thư viện có sẵn.
       - Hệ thống xác nhận thông tin người dùng có sẵn.
       - Cơ sở dữ liệu hướng đối tượng giúp lưu trữ và phục hồi dữ liệu.
@@ -171,7 +171,69 @@
               - Create model Question
               - Create model Choice
           ```
-    
+       - Khi chạy lệnh makemigrations tức là ta đang thực hiện một số thay đổi trong model và các thay đổi đấy lưu ở dạng migration ( phần này em không hiểu lắm )
+       - Lệnh sqlmigrate lấy tên migration và trả về SQL mà migration chạy.( Ở đây sử dụng PostgreSQL )
+          ```bash
+          py manage.py sqlmigrate polls 0001
+          ```
+       - Chạy lệnh migrate để tạo các model trong cơ sở dữ liệu
+       - Note: Run python manage.py makemigrations to create migrations for those changes. Run python manage.py migrate to apply those changes to the database.
+   - Cài đặt API:
+   
+          py manage.py shell
+          
+          >>> from polls.models import Choice, Question  # Import the model classes we just wrote.
+
+          # No questions are in the system yet.
+          >>> Question.objects.all()
+          <QuerySet []>
+
+          # Create a new Question.
+          # Support for time zones is enabled in the default settings file, so
+          # Django expects a datetime with tzinfo for pub_date. Use timezone.now()
+          # instead of datetime.datetime.now() and it will do the right thing.
+          >>> from django.utils import timezone
+          >>> q = Question(question_text="What's new?", pub_date=timezone.now())
+
+          # Save the object into the database. You have to call save() explicitly.
+          >>> q.save()
+
+          # Now it has an ID.
+          >>> q.id
+          1
+
+          # Access model field values via Python attributes.
+          >>> q.question_text
+          "What's new?"
+          >>> q.pub_date
+          datetime.datetime(2012, 2, 26, 13, 0, 0, 775217, tzinfo=<UTC>)
+
+          # Change values by changing the attributes, then calling save().
+          >>> q.question_text = "What's up?"
+          >>> q.save()
+
+          # objects.all() displays all the questions in the database.
+          >>> Question.objects.all()
+          <QuerySet [<Question: Question object (1)>]>
+          ```
+       - Sửa file polls/models.py:
+       
+          ```bash
+          from django.db import models
+
+          class Question(models.Model):
+              # ...
+              def __str__(self):
+                  return self.question_text
+              def was_published_recently(self):
+                  return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+
+          class Choice(models.Model):
+              # ...
+              def __str__(self):
+                  return self.choice_text
+           ```
+       - Lưu thay đổi:
   3. Bổ sung:
 
    - Hiện tại em đang tìm hiểu về việc cài netbox trên ubuntu (20.04).
