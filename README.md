@@ -329,20 +329,19 @@
      - Sửa file  polls/url.py:
 
            ```bash
-          from django.urls import path
+            from django.urls import path
 
-          from . import views
-
-          urlpatterns = [
-              # ex: /polls/
-              path('', views.index, name='index'),
-              # ex: /polls/5/
-              path('<int:question_id>/', views.detail, name='detail'),
-              # ex: /polls/5/results/
-              path('<int:question_id>/results/', views.results, name='results'),
-              # ex: /polls/5/vote/
-              path('<int:question_id>/vote/', views.vote, name='vote'),
-          ]
+            from . import views
+            urlpatterns = [
+                # ex: /polls/
+                path('', views.index, name='index'),
+                # ex: /polls/5/
+                path('<int:question_id>/', views.detail, name='detail'),
+                # ex: /polls/5/results/
+                path('<int:question_id>/results/', views.results, name='results'),
+                # ex: /polls/5/vote/
+                path('<int:question_id>/vote/', views.vote, name='vote'),
+            ]
            ```
            
      - Mỗi view chịu trách nghiệm cho việc trả về HttpResponse khi việc kết nối hoàn tất hoặc trả về  Http404 khi xuất hiện lỗi.
@@ -431,7 +430,10 @@
    - Tạo các Test cho app của mình: 
         https://docs.djangoproject.com/en/4.0/intro/tutorial05/
 
-   - Tối giản hóa code (Ở đây em làm theo tutorial04) : 
+   - Sử dụng Css để làm đẹp web : 
+        https://docs.djangoproject.com/en/4.0/intro/tutorial06/
+
+
   3. Bổ sung:
 
    - Hiện tại em đang tìm hiểu về việc cài netbox trên ubuntu (20.04).
