@@ -13,6 +13,7 @@
 #### 1. Tổng quan:
 #### 2. Cài đặt và thiết lập app Django cơ bản:
 #### 3. Bổ sung:
+#### 4. Debug:( Hiện tại các Debug em đã sửa được )
 ### III.Tài liệu tham khảo
 
 -----
