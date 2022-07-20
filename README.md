@@ -40,8 +40,9 @@
       - Hệ thống xác nhận thông tin người dùng có sẵn.
       - Cơ sở dữ liệu hướng đối tượng giúp lưu trữ và phục hồi dữ liệu.
       - Trình quản lý admin tự động giúp sửa, thêm và xóa các tính năng.
-
-   - Sơ qua về Netbox:https:
+      - Hệ thống cache mạnh mẽ.
+      - 
+   - Sơ qua về Netbox:
        
        ![alt text](https://github.com/Baothinh20/Report/blob/main/image/netbox.png?raw=true)
     
