@@ -4,7 +4,7 @@
 ## Thông tin liên lạc:
 
   - Số điện thoại:0362993732
-  - Gmail:tranbaothinh.2001@gmail.com
+  - Gmail: tranbaothinh.2001@gmail.com
   - Github: https://github.com/Baothinh20
 
 ## Mục lục:
