@@ -487,6 +487,7 @@
    - Cài netbox trên ubuntu (20.04). https://docs.netbox.dev/en/stable/installation/
       - Vì quá trình cài không có lỗi nên các bước làm em làm giống tutorial và em đã cài các phần mềm PostgreSQL Database, Redis, Gunicorn, HTTP Server Setup (Apache)       để hỗ trợ cho netbox.
    - Tìm hiểu thêm về cách phát triển netbox: https://docs.netbox.dev/en/stable/development/
+   - Tạo thêm nhánh Storage và thêm các tính năng như hiển thị model, add, delete, etc. 
     
 ### III.Tài liệu tham khảo
   - https://topdev.vn/blog/framework-la-gi/.
