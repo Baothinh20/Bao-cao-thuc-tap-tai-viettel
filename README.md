@@ -7,6 +7,15 @@
   - Gmail:tranbaothinh.2001@gmail.com
   - Github: https://github.com/Baothinh20
 
+## Mục lục:
+### I. Công việc được giao:
+### II. Tiến trình công việc:
+### III.Tài liệu tham khảo
+#### 1. Tổng quan:
+#### 2. Cài đặt và thiết lập app Django cơ bản:
+#### 3. Bổ sung:
+
+
 ### I. Công việc được giao:
 
   - Tìm hiểu về Python Framework.
