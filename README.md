@@ -32,7 +32,7 @@
   1. Tổng quan:
    - Python Framework là các đoạn code đã được viết sẵn, một bộ khung và các thư viện lập trình được đóng gói.
    - Django là Python Back-end framework tốt nhất vào những năm 2021 tới hiện tại.
-   - 
+
    ![alt text](https://github.com/Baothinh20/Report/blob/main/image/Django.png?raw=true)
    
    - Điểm nổi bật chính:
@@ -42,8 +42,8 @@
       - Trình quản lý admin tự động giúp sửa, thêm và xóa các tính năng.
       - Hệ thống cache mạnh mẽ.
     - Sơ qua về Netbox:https:
-
-    ![alt text](https://github.com/Baothinh20/Report/blob/main/image/netbox.png?raw=true)
+       
+       ![alt text](https://github.com/Baothinh20/Report/blob/main/image/netbox.png?raw=true)
     
       - NetBox là một công cụ mô hình hóa tài nguyên cơ sở hạ tầng (IRM) được thiết kế để trao quyền tự động hóa mạng, được sử dụng bởi hàng nghìn tổ chức trên khắp           thế giới.
       - Vô số thành phần cơ sở hạ tầng có thể được mô hình hóa trong NetBox.
