@@ -201,7 +201,7 @@
        - Chạy lệnh migrate để tạo các model trong cơ sở dữ liệu
        - Note: Run python manage.py makemigrations to create migrations for those changes. Run python manage.py migrate to apply those changes to the database.
    - Cài đặt API:
-          ```bash
+          ```
           py manage.py shell
           
           >>> from polls.models import Choice, Question  # Import the model classes we just wrote.
